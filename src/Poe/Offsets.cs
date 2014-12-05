@@ -1,3 +1,4 @@
+using System;
 using PoeHUD.Framework;
 
 namespace PoeHUD.Poe
@@ -100,6 +101,11 @@ namespace PoeHUD.Poe
 			Base = m.ReadInt(m.BaseAddress + array[3] + 22) - m.BaseAddress;
 			FileRoot = m.ReadInt(m.BaseAddress + array[4] + 40) - m.BaseAddress;
 			AreaChangeCount = m.ReadInt(m.BaseAddress + array[5] + 13) - m.BaseAddress;
+            string pat = "";
+            foreach (byte b in fileRootPattern.Bytes)
+                pat += b.ToString("X2") + " ";
+            Console.WriteLine(pat);
+            Console.WriteLine(FileRoot.ToString("X8"));
 		}
 	}
 }

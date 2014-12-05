@@ -21,7 +21,7 @@ namespace PoeHUD.Poe
 		public TheGame(Memory m)
 		{
 			this.m = m;
-			this.address = m.ReadInt(m.BaseAddress + Offsets.Base, new[]{ 4, 124 });
+			this.address = m.ReadInt(m.BaseAddress + Offsets.Base, new[]{ 0x4,0x7c });
 			this.game = this;
 		}
 	}
