@@ -10,6 +10,15 @@ namespace PoeHUD.Poe
 				return this.m.ReadInt(this.address + 0x2AF8) == 3;
 			}
 		}
+
+        public InventorySet PlayerInventories 
+        {
+            get //getinventoryset
+            { 
+                return GetObject<InventorySet>(address + 0x2D50); 
+            } 
+        } 
+
 		public InventorySet FlaskInventoryBase
 		{
 			get

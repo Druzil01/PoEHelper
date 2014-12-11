@@ -95,8 +95,7 @@ namespace PoeHUD.Hud.MaxRolls
             {
                 if (item.CouldHaveTiers())
                     prefix += " T" + item.Tier + " ";
-
-                rc.AddTextWithHeight(new Vec2(clientRect.X + 5, yPos), prefix, Color.White, 8, DrawTextFormat.Left);
+                rc.AddTextWithHeight(new Vec2(clientRect.X + 5, yPos), prefix, item.TextColor, 8, DrawTextFormat.Left);
                 var textSize = rc.AddTextWithHeight(new Vec2(clientRect.X + leftRuler, yPos), item.AffixText, item.TextColor, 8,
                     DrawTextFormat.Left);
                 yPos += textSize.Y;

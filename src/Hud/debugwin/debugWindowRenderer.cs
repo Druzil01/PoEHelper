@@ -8,6 +8,7 @@ using PoeHUD.Poe.EntityComponents;
 using PoeHUD.Poe.UI;
 using SlimDX.Direct3D9;
 using System.Linq;
+using System;
 
 
 namespace PoeHUD.Hud.debugwin
@@ -18,14 +19,36 @@ namespace PoeHUD.Hud.debugwin
         //private Rect destWin;
         private int textX;
         private int textY;
+        private MouseHook hook;
+        private Vec2 Mousepos;
+
+        public debugWindowRenderer()
+        {
+        }
 
         public override void OnEnable()
         {
+            this.hook = new MouseHook(new MouseHook.MouseEvent(this.OnMouseEvent));
         }
 
         public override void OnDisable()
         {
+            this.hook.Dispose();
         }
+
+        private bool OnMouseEvent(MouseEventID id, int x, int y)
+        {
+            if (Settings.GetBool("Window.RequireForeground") && !this.model.Window.IsForeground())
+            {
+                return false;
+            }
+            Mousepos = this.model.Window.ScreenToClient(new Vec2(x, y));
+            if (id == MouseEventID.MouseMove)
+            {
+            }
+            return false;
+        }
+
 
         private int addLine(RenderingContext rc,string t)
         {
@@ -38,6 +61,7 @@ namespace PoeHUD.Hud.debugwin
         {
             if (Settings.GetBool("debug"))
             {
+                rc.AddTextWithHeight(new Vec2(1, 1), Mousepos.X.ToString()+ " - " + Mousepos.Y.ToString(), Color.White, 8, DrawTextFormat.Left);
                 //ItemDebug();
 
                 //Element uiHover = this.model.Internal.IngameState.UIHover;
@@ -78,14 +102,16 @@ namespace PoeHUD.Hud.debugwin
 
                 //ShowOpenUiWindows(rc);
                 //DrawOpenWindows(rc);
-                showInGameUI(rc);
+                //showInGameUI(rc);
                 //ShowAllUiWindows(rc);
 
                 Rect destWin = new Rect(miniMapRect.X, clientRect.Y + clientRect.H + 20, miniMapRect.W, clientRect.H + 12 * lines);
                 rc.AddBox(destWin, Color.FromArgb(180, 0, 0, 0));
                 rc.AddFrame(destWin, Color.Gray, 2);
 
-                //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.GemLvlUpPanel);
+                showElementChilds(rc, this.model.Internal.IngameState.IngameUi.InventoryPanel);
+                showElementChilds(rc, this.model.Internal.IngameState.IngameUi.Flasks);
+                showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemsOnGroundLabels);
                 //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.OpenNpcDialogPanel); // <- offset 160
                 //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemOnGroundTooltip); // <- offset 160
                 //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemsOnGroundLabels); // <- offset 160
@@ -120,9 +146,22 @@ namespace PoeHUD.Hud.debugwin
         private void ShowElement(RenderingContext rc,Element ele,Color col, int width,string txt)
         {
             Rect Re = ele.GetClientRect();
-            //rc.AddBox(Re, Color.FromArgb(230, 0, 0, 0));
-            rc.AddFrame(Re, col, width);
-            rc.AddTextWithHeight(new Vec2(Re.X+4, Re.Y+4), txt, col, 8, DrawTextFormat.Left);
+            if (Re.H > 0)
+            {
+                int rnd = new Random().Next(0, Re.H+1);
+                rnd = 0;
+                //rc.AddBox(Re, Color.FromArgb(230, 0, 0, 0));
+                if (Re.HasPoint(Mousepos))
+                {
+                    col = Color.LightCyan;
+                    rc.AddFrame(Re, col, width+2);
+                    rc.AddTextWithHeight(new Vec2(Re.X+4, Re.Y+4+rnd), txt, col, 8, DrawTextFormat.Left);
+                }
+                else
+                {
+                    rc.AddFrame(Re, col, width);
+                }
+            }
         }
 
 
@@ -166,11 +205,15 @@ namespace PoeHUD.Hud.debugwin
                         }
                     }
                 }
-                
+
                 if (known)
-                    ShowElement(rc, el, Color.Red, 2, offs.ToString("X3"));
+                {
+                    //ShowElement(rc, el, Color.Red, 2, offs.ToString("X3"));
+                }
                 else
+                {
                     ShowElement(rc, el, Color.Gold, 1, offs.ToString("X3"));
+                }
             }
         }
 
