@@ -7,8 +7,9 @@ namespace PoeHUD.Poe
 			get
 			{
 //				return this.m.ReadInt(this.address + 10872) == 3;
-				return this.m.ReadInt(this.address + 0x2AF8) == 3;
-			}
+//                return this.m.ReadInt(this.address + 0x2AF8) == 3; // 1.2
+                return this.m.ReadInt(this.address + 0x2D80) == 3;
+            }
 		}
 
         public InventorySet PlayerInventories 

@@ -100,21 +100,24 @@ namespace PoeHUD.Hud.debugwin
                 lines += ShowAdresses(rc);
                 lines += AddPlayerinfo(rc);
 
+                // -----------------------------------------------------------------------------------------------------------------
                 //ShowOpenUiWindows(rc);
                 //DrawOpenWindows(rc);
-                //showInGameUI(rc);
+                showInGameUI(rc);
                 //ShowAllUiWindows(rc);
 
+                // -----------------------------------------------------------------------------------------------------------------
+                showElementChilds(rc, this.model.Internal.IngameState.IngameUi.DropItemWindow2);
+                //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.Flasks);
+                //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemsOnGroundLabels);
+                //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.OpenNpcDialogPanel);
+                //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemOnGroundTooltip);
+                //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemsOnGroundLabels);
+                // -----------------------------------------------------------------------------------------------------------------
                 Rect destWin = new Rect(miniMapRect.X, clientRect.Y + clientRect.H + 20, miniMapRect.W, clientRect.H + 12 * lines);
                 rc.AddBox(destWin, Color.FromArgb(180, 0, 0, 0));
                 rc.AddFrame(destWin, Color.Gray, 2);
 
-                showElementChilds(rc, this.model.Internal.IngameState.IngameUi.InventoryPanel);
-                showElementChilds(rc, this.model.Internal.IngameState.IngameUi.Flasks);
-                showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemsOnGroundLabels);
-                //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.OpenNpcDialogPanel); // <- offset 160
-                //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemOnGroundTooltip); // <- offset 160
-                //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemsOnGroundLabels); // <- offset 160
             }
         }
 
@@ -156,6 +159,7 @@ namespace PoeHUD.Hud.debugwin
                     col = Color.LightCyan;
                     rc.AddFrame(Re, col, width+2);
                     rc.AddTextWithHeight(new Vec2(Re.X+4, Re.Y+4+rnd), txt, col, 8, DrawTextFormat.Left);
+                    addLine(rc, txt);
                 }
                 else
                 {
@@ -164,11 +168,11 @@ namespace PoeHUD.Hud.debugwin
             }
         }
 
-
         private void showElementChilds(RenderingContext rc, Element Base)
         {
             showElementChilds(rc, Base, 0,4,"0");
         }
+ 
         private void showElementChilds(RenderingContext rc, Element Base,int current,int max, string path)
         {
             Color[] cols = new Color[5] { Color.Red, Color.Green, Color.LightBlue, Color.Gold, Color.Cyan };
@@ -186,29 +190,31 @@ namespace PoeHUD.Hud.debugwin
 
         private void showInGameUI(RenderingContext rc)
         {
+            Dictionary<int,string> KnownUI = new Dictionary<int,string>();
+            PropertyInfo[] prop = typeof(IngameUIElements).GetProperties();
+            Element ActiveUiElement = null;
+            foreach (PropertyInfo p in prop)
+            {
+                if (p.PropertyType == typeof(Element) || p.PropertyType.BaseType == typeof(Element))
+                {
+                    if (p.CanRead)
+                    {
+                        ActiveUiElement = (Element)p.GetValue(this.model.Internal.game.IngameState.IngameUi, null);
+                        Console.WriteLine(string.Format("{0} - {1}", ActiveUiElement.address.ToString("X8"), p.Name));
+                        KnownUI.Add(ActiveUiElement.address, p.Name);
+                    }
+                }
+            }
+
             for (int i = 0; i <= 420; i++) //Just a guess .. can be a lot more
             {
                 int offs = i * 4;
                 Element el = this.model.Internal.IngameState.IngameUi.ReadObjectAt<Element>(offs);
 
-                bool known = false;
-                PropertyInfo[] prop = typeof(IngameUIElements).GetProperties();
-                foreach (PropertyInfo p in prop)
+                if (KnownUI.ContainsKey(el.address))
                 {
-                    var m = p.MemberType;
-                    if (p.PropertyType == typeof(Element) || p.PropertyType.BaseType == typeof(Element))
-                    {
-                        if (p.CanRead)
-                        {
-                            Element b = (Element)p.GetValue(this.model.Internal.game.IngameState.IngameUi, null);
-                            known = known || b.address == el.address;
-                        }
-                    }
-                }
-
-                if (known)
-                {
-                    //ShowElement(rc, el, Color.Red, 2, offs.ToString("X3"));
+                    ShowElement(rc, el, Color.Red, 2, KnownUI[el.address]+"-"+offs.ToString("X3"));
+                    //showElementChilds(rc, ActiveUiElement);
                 }
                 else
                 {
@@ -275,7 +281,6 @@ namespace PoeHUD.Hud.debugwin
                 }
             }
         }
-
 
         private int ShowAdresses(RenderingContext rc)
         {

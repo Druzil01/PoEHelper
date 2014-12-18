@@ -1,12 +1,9 @@
-PoeHud
+PoeHelper
 ======
 
-Beware, this is a Standalone derivate from the ast Public source by Evozer/Coyl.
+Overlay helper for path of Exile
 
-### Watch the change in the License to GPL 3, wich means that every fork, or changes have to be distributed as Sourcecode. The License CANT  be changed at will and stays forever !
-
-
-Reads data from Path of Exile client application and displays it on transparent overlay, while you play PoE.
+Thanks evozer for the Original Release
 
 ### Requirements
 * .NET framerwork v.4 or newer (you already have it on Windows 8+, otherwise here's your dowload link)
@@ -30,12 +27,5 @@ Portal Scroll
 Iron Ring
 ```
 
-
-As im not good at offset finding it may be that this derivate wont work in the future without help from others 
-(who can handle new offsets and/or even new structures).
-so everyone who likes to put some work on it is welcome !!
-
-Initial Version and idea by Evozer (still most of the structure is by him)
-
-Enhancements by Coyl -> ([his compiled version can be found here](https://github.com/max-mtg/PoeHud)
-thanks to both of you 
+---
+Hey asshole, you know who you are, i dont care what you do!

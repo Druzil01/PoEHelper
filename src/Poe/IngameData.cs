@@ -29,15 +29,16 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				return base.ReadObject<Entity>(this.address + 0x5A0);
+				return base.ReadObject<Entity>(this.address + 1440);
 			}
 		}
 		public EntityList EntityList
 		{
 			get
 			{
-				return base.GetObject<EntityList>(this.address + 0x5c0);
-			}
+				//return base.GetObject<EntityList>(this.address + 1472); // 1.2 
+                return base.GetObject<EntityList>(this.address + 1476);
+            }
 		}
 	}
 }
