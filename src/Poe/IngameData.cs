@@ -36,8 +36,9 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				return base.GetObject<EntityList>(this.address + 1472);
-			}
+				//return base.GetObject<EntityList>(this.address + 1472); // 1.2 
+                return base.GetObject<EntityList>(this.address + 1476);
+            }
 		}
 	}
 }

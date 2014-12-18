@@ -44,7 +44,7 @@ namespace PoeHUD.Hud
 				new XPHRenderer(),
 				new ClientHacks(),
                 new debugWindowRenderer(),
-                new GemLeveling(),
+                //new GemLeveling(),
 	#if DEBUG
 				// new ShowUiHierarchy(),
                 //new MainAddresses(),

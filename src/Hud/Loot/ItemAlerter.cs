@@ -116,14 +116,18 @@ namespace PoeHUD.Hud.Loot
 			}
 			var mm = model.Internal.game.IngameState.IngameUi.Minimap.SmallMinimap;
 			var gl = model.Internal.game.IngameState.IngameUi.GemLvlUpPanel;
-			Rect mmRect = mm.GetClientRect();
+            var qt = model.Internal.game.IngameState.IngameUi.QuestTracker;
+            Rect mmRect = mm.GetClientRect();
 			Rect glRect = gl.GetClientRect();
+            Rect qtRect = qt.GetClientRect();
 
 			Rect clientRect;
-			if (gl.IsVisible && glRect.X + gl.Width < mmRect.X + mmRect.X + 50) // also this +50 value doesn't seems to have any impact
-				clientRect = glRect;
-			else
-				clientRect = mmRect;
+            clientRect = mmRect;
+			if (gl.IsVisible && glRect.H>0) // also this +50 value doesn't seems to have any impact
+				clientRect.H += glRect.H;
+            if (qt.IsVisible && qtRect.X >0) // also this +50 value doesn't seems to have any impact
+                clientRect.H += qtRect.H;
+				
 
 			var playerPos = model.Player.GetComponent<Positioned>().GridPos;
 

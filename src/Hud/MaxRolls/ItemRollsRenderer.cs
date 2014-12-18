@@ -108,32 +108,28 @@ namespace PoeHUD.Hud.MaxRolls
                     continue;
 
                 var theStat = item.TheMod.StatNames[iStat];
-                int val = item.StatValue[iStat];
-                float percents = range.GetPercentage(val);
-                bool noSpread = !range.HasSpread();
+                if (theStat != null)
+                {
+                    int val = item.StatValue[iStat];
+                    float percents = range.GetPercentage(val);
+                    bool noSpread = !range.HasSpread();
 
-                double hue = 120 * percents;
-                if (noSpread) hue = 300;
-                if (percents > 1) hue = 180;
+                    double hue = 120 * percents;
+                    if (noSpread) hue = 300;
+                    if (percents > 1) hue = 180;
 
-                Color col = ColorUtils.ColorFromHsv(hue, 1, 1);
+                    Color col = ColorUtils.ColorFromHsv(hue, 1, 1);
 
-                string line2 = string.Format(noSpread ? "{0}" : "{0} [{1}]", theStat, range);
+                    string line2 = string.Format(noSpread ? "{0}" : "{0} [{1}]", theStat, range);
 
-                rc.AddTextWithHeight(new Vec2(clientRect.X + leftRuler, yPos), line2, Color.White, 8, DrawTextFormat.Left);
+                    rc.AddTextWithHeight(new Vec2(clientRect.X + leftRuler, yPos), line2, Color.White, 8, DrawTextFormat.Left);
 
-                string sValue = theStat.ValueToString(val);
-                var txSize = rc.AddTextWithHeight(new Vec2(clientRect.X + leftRuler - 5, yPos), sValue,
-                    col, 8,
-                    DrawTextFormat.Right);
-
-
-
-                //if (!isUniqAffix)
-                //	rc.AddTextWithHeight(new Vec2(clientRect.X + clientRect.W - 5, yPos), item.AllTiersRange[iStat].ToString(),
-                //		Color.White, 8,
-                //		DrawTextFormat.Right);
-                yPos += txSize.Y;
+                    string sValue = theStat.ValueToString(val);
+                    var txSize = rc.AddTextWithHeight(new Vec2(clientRect.X + leftRuler - 5, yPos), sValue,
+                        col, 8,
+                        DrawTextFormat.Right);
+                    yPos += txSize.Y;
+                }
             }
             return yPos;
         }

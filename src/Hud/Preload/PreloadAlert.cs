@@ -254,6 +254,29 @@ namespace PoeHUD.Hud.Preload
 			this.alertStrings.Add("Metadata/NPC/Missions/Wild/StrDex", "Area contains Vagan, Weaponmaster");
 			this.alertStrings.Add("Metadata/NPC/Missions/Wild/StrDexInt", "Area contains Zana, Master Cartographer");
 			this.alertStrings.Add("Metadata/NPC/Missions/Wild/StrInt", "Area contains Elreon, Loremaster");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedArsonist", "Area contains Tormented Arsonist");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedFreezer", "Area contains Tormented Aurora Cultist");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedBlasphemer", "Area contains Tormented Blasphemer");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedCannibal", "Area contains Tormented Cannibal");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedCharlatan", "Area contains Tormented Charlatan");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedCutthroat", "Area contains Tormented Cutthroat");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedEmbezzler", "Area contains Tormented Embezzler");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedCounterfeiter", "Area contains Tormented Forger");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedMartyr", "Area contains Tormented Martyr");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedMutilator", "Area contains Tormented Mutilator");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedNecromancer", "Area contains Tormented Necromancer");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedPoisoner", "Area contains Tormented Poisoner");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedRogue", "Area contains Tormented Rogue");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedLibrarian", "Area contains Tormented Seditionist");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedSmuggler", "Area contains Tormented Smuggler");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedSpy", "Area contains Tormented Spy");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedExperimenter", "Area contains Tormented Storm Cultist");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedThief", "Area contains Tormented Thief");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedThug", "Area contains Tormented Thug");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedCorrupter", "Area contains Tormented Vaal Cultist");
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedWarlord", "Area contains Tormented Warlord");
+
+            this.alertStrings.Add("Metadata/Monsters/Spirit/TormentedFisherman", "Area contains Tormented Illegal Fisherman");
 		}
 	}
 }

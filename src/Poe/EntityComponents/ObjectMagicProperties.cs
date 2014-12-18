@@ -12,8 +12,9 @@ namespace PoeHUD.Poe.EntityComponents
 			{
 				if (this.address != 0)
 				{
-					return (MonsterRarity)this.m.ReadInt(this.address + 36);
-				}
+                    //return (MonsterRarity)this.m.ReadInt(this.address + 0x24); // 1.2
+                    return (MonsterRarity)this.m.ReadInt(this.address + 0x40);
+                }
 				return MonsterRarity.White;
 			}
 		}
@@ -25,8 +26,10 @@ namespace PoeHUD.Poe.EntityComponents
 				{
 					return new List<string>();
 				}
-				int num = this.m.ReadInt(this.address + 56);
-				int num2 = this.m.ReadInt(this.address + 60);
+                //int num = this.m.ReadInt(this.address + 38); //1.2
+                //int num2 = this.m.ReadInt(this.address + 3c); // 1.2
+                int num = this.m.ReadInt(this.address + 0x54);
+				int num2 = this.m.ReadInt(this.address + 0x58);
 				List<string> list = new List<string>();
 				if (num == 0 || num2 == 0)
 				{
