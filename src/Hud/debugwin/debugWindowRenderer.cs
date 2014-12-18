@@ -201,7 +201,8 @@ namespace PoeHUD.Hud.debugwin
                     {
                         ActiveUiElement = (Element)p.GetValue(this.model.Internal.game.IngameState.IngameUi, null);
                         Console.WriteLine(string.Format("{0} - {1}", ActiveUiElement.address.ToString("X8"), p.Name));
-                        KnownUI.Add(ActiveUiElement.address, p.Name);
+                        if (!KnownUI.ContainsKey(ActiveUiElement.address))
+                            KnownUI.Add(ActiveUiElement.address, p.Name);
                     }
                 }
             }

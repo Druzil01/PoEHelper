@@ -13,7 +13,7 @@ namespace PoeHUD.Poe
         public Element HpGlobe { get { return ReadObjectAt<Element>(0x40); } }
         public Element ManaGlobe { get { return ReadObjectAt<Element>(0x44); } }
         public Element Flasks { get { return ReadObjectAt<Element>(0x4C); } }
-        public Element XpBar { get { return ReadObjectAt<Element>(0x8 + 0x50); } }
+        public Element XpBar { get { return ReadObjectAt<Element>(0x50); } }
         public Element MenuButton { get { return ReadObjectAt<Element>(0x54); } }
         public Element MenuPanel { get { return ReadObjectAt<Element>(0x58); } }
         public Element OptionsMenuItem { get { return ReadObjectAt<Element>(0x5C); } }
@@ -31,7 +31,7 @@ namespace PoeHUD.Poe
         public Element SkillPointAvailable { get { return ReadObjectAt<Element>(0x8C); } }
         public Element QuestInfoButton { get { return ReadObjectAt<Element>(0x90); } }
         public Element OpenChatButton { get { return ReadObjectAt<Element>(0x9C); } }
-        public Element DragDropWindow { get { return ReadObjectAt<Element>(0xA0); } } // Wrong name. 
+        public Element DragDropWindow { get { return ReadObjectAt<Element>(0xA0); } } 
         public Element ActionButtons { get { return ReadObjectAt<Element>(0xA4); } }
         //public Element SkillSelectWindow { get { return ReadObjectAt<Element>(0x4 + 0xA8); } }
         public Element PartyPanel { get { return ReadObjectAt<Element>(0xB0); } }
@@ -49,7 +49,7 @@ namespace PoeHUD.Poe
         public Element CenterBottomPanel1 { get { return ReadObjectAt<Element>(0xD4); } }
         public Element CenterBottomPanel2 { get { return ReadObjectAt<Element>(0xD8); } }
 
-        public Element Chat { get { return ReadObjectAt<Element>(0xDC); } }
+        public Element Chat { get { return ReadObjectAt<Element>(0xE4); } } //+8 1.3d!!!
         //public Element Chat { get { return ReadObjectAt<Element>(0x4 + 0xDC); } }
         public Element QuestTracker { get { return ReadObjectAt<Element>(0xF0); } }
         //public Element MtxInventory { get { return ReadObjectAt<Element>(0x8 + 0xF0); } }
@@ -62,7 +62,7 @@ namespace PoeHUD.Poe
         //public Element OptionsPanel { get { return ReadObjectAt<Element>(0x8 + 0x114); } }
         //public Element AchievementsPanel { get { return ReadObjectAt<Element>(0x8 + 0x118); } }
         //public Element WorldPanel { get { return ReadObjectAt<Element>(0x8 + 0x11C); } }
-        public BigMinimap Minimap { get { return ReadObjectAt<BigMinimap>(0x128); } }
+        public BigMinimap Minimap { get { return ReadObjectAt<BigMinimap>(0x12C); } } //+4 1.3d
         //public Element ItemsOnGroundLabels { get { return ReadObjectAt<Element>(0x8 + 0x124); } }
         //public Element MonsterHpLabels { get { return ReadObjectAt<Element>(0x8 + 0x128); } }
         //public Element Buffs { get { return ReadObjectAt<Element>(0x8 + 0x134); } }
@@ -71,12 +71,12 @@ namespace PoeHUD.Poe
         //public Element OpenRightPanel { get { return ReadObjectAt<Element>(0x8 + 0x15c); } }
         //public Element OpenNpcDialogPanel { get { return ReadObjectAt<Element>(0x8 + 0x164); } }
         //public Element CreatureInfoPanel { get { return ReadObjectAt<Element>(0x8 + 0x188); } }
-        public Element DropItemWindow1 { get { return ReadObjectAt<Element>(0x1A8); } }
-        public Element DropItemWindow2 { get { return ReadObjectAt<Element>(0x1B4); } }
+        public Element DropItemWindow1 { get { return ReadObjectAt<Element>(0x1AC); } }
+        public Element DropItemWindow2 { get { return ReadObjectAt<Element>(0x1B8); } }
         //public Element SwitchingZoneInfo { get { return ReadObjectAt<Element>(0x8 + 0x1C8); } } // dunno what it is
         //public Element InstanceManagerPanel { get { return ReadObjectAt<Element>(0x8 + 0x19c); } }
         //public Element InstanceManagerPanel2 { get { return ReadObjectAt<Element>(0x8 + 0x200); } }
-        public Element GemLvlUpPanel { get { return ReadObjectAt<Element>(0x208); } }
+        public Element GemLvlUpPanel { get { return ReadObjectAt<Element>(0x20C); } }
         //public Element ItemOnGroundTooltip { get { return ReadObjectAt<Element>(0x8 + 0x20C); } }
         public Vec2 GetRightTopLeftOfMinimap()
         {
