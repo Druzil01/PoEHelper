@@ -11,7 +11,7 @@ namespace PoeHUD.Poe
 			get
 			{
 				Memory arg_19_0 = this.m;
-				int arg_19_1 = this.address;
+				int arg_19_1 = this.Address;
 				int[] array = new int[2];
 				array[0] = 88;
 				return arg_19_0.ReadInt(arg_19_1, array);
@@ -26,7 +26,7 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				return this.m.ReadInt(this.address + 4);
+				return this.m.ReadInt(this.Address + 4);
 			}
 		}
 
@@ -38,7 +38,7 @@ namespace PoeHUD.Poe
         {
             get
             {
-                return this.m.ReadInt(this.address + 8);
+                return this.m.ReadInt(this.Address + 8);
             }
         }
 
@@ -59,7 +59,7 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				return this.m.ReadStringU(this.m.ReadInt(this.address, new int[]
+				return this.m.ReadStringU(this.m.ReadInt(this.Address, new int[]
 				{
 					8
 				}), 256, true);
@@ -70,7 +70,7 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				return this.m.ReadInt(this.address + 24);
+				return this.m.ReadInt(this.Address + 24);
 			}
 		}
 		
@@ -87,7 +87,7 @@ namespace PoeHUD.Poe
 			get
 			{
 				Memory arg_18_0 = this.m;
-				int arg_18_1 = this.address;
+				int arg_18_1 = this.Address;
 				int[] array = new int[2];
 				array[0] = 8;
 				return arg_18_0.ReadInt(arg_18_1, array) == 6619213;
@@ -98,7 +98,7 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				return (this.m.ReadByte(this.address + 29) & 1) == 0;
+				return (this.m.ReadByte(this.Address + 29) & 1) == 0;
 			}
 		}
 		

@@ -62,7 +62,7 @@ namespace PoeHUD.Hud.DebugView
 			int ix = depth > 0 ? path[depth - 1] : 0;
 			var c = Color.FromArgb(255, 255 - 25 * (ix % 10), 255 - 25 * ((ix % 100) / 10), 255);
 
-			string msg = string.Format("[{2}] {1:X8} : {0}", rC, root.address, sPath);
+			string msg = string.Format("[{2}] {1:X8} : {0}", rC, root.Address, sPath);
 
 			var v = rc.AddTextWithHeight(new Vec2(x, yPos), msg, c, 9, DrawTextFormat.Left);
 			rc.AddTextWithHeight(new Vec2(rC.X, rC.Y + depth * 10 - 10), sPath, c, 8, DrawTextFormat.Left);

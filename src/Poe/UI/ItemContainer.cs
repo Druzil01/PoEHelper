@@ -9,7 +9,7 @@ namespace PoeHUD.Poe.UI
 	{
 		public Entity GetItem()
 		{
-			var addrContainer = this.m.ReadInt(this.address + OffsetBuffers + UiElementSize + 0x20);
+			var addrContainer = this.m.ReadInt(this.Address + OffsetBuffers + UiElementSize + 0x20);
 			var addrList = m.ReadInt(addrContainer + 0x20);
 			var addrListEnd = m.ReadInt(addrContainer + 0x24);
 

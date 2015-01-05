@@ -77,7 +77,7 @@ namespace PoeHUD.Poe
         //public Element InstanceManagerPanel { get { return ReadObjectAt<Element>(0x8 + 0x19c); } }
         //public Element InstanceManagerPanel2 { get { return ReadObjectAt<Element>(0x8 + 0x200); } }
         public Element GemLvlUpPanel { get { return ReadObjectAt<Element>(0x20C); } }
-        //public Element ItemOnGroundTooltip { get { return ReadObjectAt<Element>(0x8 + 0x20C); } }
+        public Element ItemOnGroundTooltip { get { return ReadObjectAt<ItemOnGroundTooltip>(20 + 0x208); } }
         public Vec2 GetRightTopLeftOfMinimap()
         {
             Rect clientRect = Minimap.SmallMinimap.GetClientRect();

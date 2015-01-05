@@ -9,14 +9,14 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				return this.m.ReadInt(this.address + 0x70);
+				return this.m.ReadInt(this.Address + 0x70);
 			}
 		}
 		private int ListEnd
 		{
 			get
 			{
-				return this.m.ReadInt(this.address + 0x74);
+				return this.m.ReadInt(this.Address + 0x74);
 			}
 		}
 		public int InventoryCount

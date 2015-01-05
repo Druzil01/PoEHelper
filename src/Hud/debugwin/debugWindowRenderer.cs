@@ -62,22 +62,6 @@ namespace PoeHUD.Hud.debugwin
             if (Settings.GetBool("debug"))
             {
                 rc.AddTextWithHeight(new Vec2(1, 1), Mousepos.X.ToString()+ " - " + Mousepos.Y.ToString(), Color.White, 8, DrawTextFormat.Left);
-                //ItemDebug();
-
-                //Element uiHover = this.model.Internal.IngameState.UIHover;
-                //Dictionary<string, int> comp = new Dictionary<string, int>();
-                ////if (uiHover != null)
-                ////{
-                //    Entity itm = uiHover.AsObject<InventoryItemIcon>().Item;
-                //    Mods Mo = itm.GetComponent<Mods>();
-                //    //if (itm.ID != 0 && itm.IsValid)
-                //    //{
-                //        comp = itm.GetComponents();
-
-                ////    }
-                ////}
-
-
 
                 Element mm = this.model.Internal.game.IngameState.IngameUi.Minimap.SmallMinimap;
                 Element qt = this.model.Internal.game.IngameState.IngameUi.QuestTracker;
@@ -97,26 +81,27 @@ namespace PoeHUD.Hud.debugwin
                 lines = 0;
                 textX = miniMapRect.X;
                 textY = clientRect.Y + clientRect.H + 20;
-                lines += ShowAdresses(rc);
-                lines += AddPlayerinfo(rc);
+                //lines += ShowAdresses(rc);
+                //lines += AddPlayerInfo(rc);
+                lines += AddRegionInfo(rc);
+                Rect destWin = new Rect(miniMapRect.X, clientRect.Y + clientRect.H + 20, miniMapRect.W, clientRect.H + 12 * lines);
+                rc.AddBox(destWin, Color.FromArgb(180, 0, 0, 0));
+                rc.AddFrame(destWin, Color.Gray, 2);
 
                 // -----------------------------------------------------------------------------------------------------------------
                 //ShowOpenUiWindows(rc);
                 //DrawOpenWindows(rc);
-                showInGameUI(rc);
+                //showInGameUI(rc);
                 //ShowAllUiWindows(rc);
 
                 // -----------------------------------------------------------------------------------------------------------------
-                showElementChilds(rc, this.model.Internal.IngameState.IngameUi.DropItemWindow2);
+                //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.DropItemWindow2);
                 //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.Flasks);
                 //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemsOnGroundLabels);
                 //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.OpenNpcDialogPanel);
                 //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemOnGroundTooltip);
                 //showElementChilds(rc, this.model.Internal.IngameState.IngameUi.ItemsOnGroundLabels);
                 // -----------------------------------------------------------------------------------------------------------------
-                Rect destWin = new Rect(miniMapRect.X, clientRect.Y + clientRect.H + 20, miniMapRect.W, clientRect.H + 12 * lines);
-                rc.AddBox(destWin, Color.FromArgb(180, 0, 0, 0));
-                rc.AddFrame(destWin, Color.Gray, 2);
 
             }
         }
@@ -200,9 +185,9 @@ namespace PoeHUD.Hud.debugwin
                     if (p.CanRead)
                     {
                         ActiveUiElement = (Element)p.GetValue(this.model.Internal.game.IngameState.IngameUi, null);
-                        Console.WriteLine(string.Format("{0} - {1}", ActiveUiElement.address.ToString("X8"), p.Name));
-                        if (!KnownUI.ContainsKey(ActiveUiElement.address))
-                            KnownUI.Add(ActiveUiElement.address, p.Name);
+                        Console.WriteLine(string.Format("{0} - {1}", ActiveUiElement.Address.ToString("X8"), p.Name));
+                        if (!KnownUI.ContainsKey(ActiveUiElement.Address))
+                            KnownUI.Add(ActiveUiElement.Address, p.Name);
                     }
                 }
             }
@@ -212,9 +197,9 @@ namespace PoeHUD.Hud.debugwin
                 int offs = i * 4;
                 Element el = this.model.Internal.IngameState.IngameUi.ReadObjectAt<Element>(offs);
 
-                if (KnownUI.ContainsKey(el.address))
+                if (KnownUI.ContainsKey(el.Address))
                 {
-                    ShowElement(rc, el, Color.Red, 2, KnownUI[el.address]+"-"+offs.ToString("X3"));
+                    ShowElement(rc, el, Color.Red, 2, KnownUI[el.Address]+"-"+offs.ToString("X3"));
                     //showElementChilds(rc, ActiveUiElement);
                 }
                 else
@@ -254,7 +239,7 @@ namespace PoeHUD.Hud.debugwin
                     if (p.CanRead)
                     {
                         Element b = (Element)p.GetValue(this.model.Internal.game.IngameState.IngameUi, null);
-                        known = known || b.address == start.address;
+                        known = known || b.Address == start.Address;
                     }
                 }
             }
@@ -291,20 +276,20 @@ namespace PoeHUD.Hud.debugwin
                 form = "";
             else
                 form = "X8";
-            l += addLine(rc, "game:" +                   this.model.Internal.game.address.ToString(form));
-            l += addLine(rc, "game.ingamestate:" + this.model.Internal.game.IngameState.address.ToString(form));
-            l += addLine(rc, "ingamestate.inggameUI :" + this.model.Internal.game.IngameState.IngameUi.address.ToString(form));
-            l += addLine(rc, "ingamestate.UIRoot:" + this.model.Internal.game.IngameState.UIRoot.address.ToString(form));
-            l += addLine(rc, "ingamestate.ServerData:" + this.model.Internal.IngameState.ServerData.address.ToString(form));
-            l += addLine(rc, "Flasks:" + this.model.Internal.IngameState.ServerData.FlaskInventoryBase.address.ToString(form));
-            l += addLine(rc, "UiBase :" + this.model.Internal.game.IngameState.ServerData.UiBase.address.ToString(form));
+            l += addLine(rc, "game:" +                   this.model.Internal.game.Address.ToString(form));
+            l += addLine(rc, "game.ingamestate:" + this.model.Internal.game.IngameState.Address.ToString(form));
+            l += addLine(rc, "ingamestate.inggameUI :" + this.model.Internal.game.IngameState.IngameUi.Address.ToString(form));
+            l += addLine(rc, "ingamestate.UIRoot:" + this.model.Internal.game.IngameState.UIRoot.Address.ToString(form));
+            l += addLine(rc, "ingamestate.ServerData:" + this.model.Internal.IngameState.ServerData.Address.ToString(form));
+            l += addLine(rc, "Flasks:" + this.model.Internal.IngameState.ServerData.FlaskInventoryBase.Address.ToString(form));
+            l += addLine(rc, "UiBase :" + this.model.Internal.game.IngameState.ServerData.UiBase.Address.ToString(form));
             //l += addLine(rc, "Playerinv:" + this.model.Internal.IngameState.ServerData.PlayerInventories.address.ToString(form));
             l += addLine(rc, "Playerbase :" + this.model.Player.Address.ToString(form));
-            l += addLine(rc, "PlayerLife:" + this.model.Player.GetComponent<Life>().address.ToString(form));
+            l += addLine(rc, "PlayerLife:" + this.model.Player.GetComponent<Life>().Address.ToString(form));
             return l;
         }
 
-        private int AddPlayerinfo(RenderingContext rc)
+        private int AddPlayerInfo(RenderingContext rc)
         {
             Life l = this.model.Player.GetComponent<Life>();
             addLine(rc, "Health =" + l.CurHP + "/" + l.MaxHP);
@@ -315,6 +300,19 @@ namespace PoeHUD.Hud.debugwin
             addLine(rc, "----------------------------------");
             return 2 + l.Buffs.Count();
         }
+
+        private int AddRegionInfo(RenderingContext rc)
+        {
+            AreaTemplate a = this.model.Internal.IngameState.Data.CurrentArea;
+            addLine(rc, "Rawname =" + a.RawName);
+            addLine(rc, "Name =" + a.Name);
+            addLine(rc, "Act =" + a.Act.ToString());
+            addLine(rc, "IsTown =" + a.IsTown.ToString());
+            addLine(rc, "HaswayPoint =" + a.HasWaypoint.ToString());
+            addLine(rc, "NominalLevel =" + a.NominalLevel.ToString());
+            return 6;
+        }
+
 
         private void ShowOpenUiWindows(RenderingContext rc)
         {

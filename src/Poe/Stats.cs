@@ -6,7 +6,7 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				if (this.address == 0)
+				if (this.Address == 0)
 				{
 					return -1;
 				}
@@ -20,7 +20,7 @@ namespace PoeHUD.Poe
 		}
 		private bool GetStat(int stat, out int result)
 		{
-			int num = this.m.ReadInt(this.address + 16);
+			int num = this.m.ReadInt(this.Address + 16);
 			int num2 = this.m.ReadInt(num + 16);
 			int i = this.m.ReadInt(num + 20) - num2 >> 3;
 			while (i > 0)
@@ -50,7 +50,7 @@ namespace PoeHUD.Poe
 		}
 		private bool GetStat2(int stat, out int res)
 		{
-			int num = this.m.ReadInt(this.address + 16, new int[]
+			int num = this.m.ReadInt(this.Address + 16, new int[]
 			{
 				8
 			});

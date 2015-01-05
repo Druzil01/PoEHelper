@@ -11,9 +11,9 @@ namespace PoeHUD.Poe.EntityComponents
 		{
 			get
 			{
-				if (this.address != 0)
+				if (this.Address != 0)
 				{
-					return (ItemRarity)this.m.ReadInt(this.address + 0x4c);
+					return (ItemRarity)this.m.ReadInt(this.Address + 0x4c);
 				}
 				return ItemRarity.White;
 			}
@@ -22,9 +22,9 @@ namespace PoeHUD.Poe.EntityComponents
 		{
 			get
 			{
-				if (this.address != 0)
+				if (this.Address != 0)
 				{
-                    return this.m.ReadInt(this.address + 0xF0);
+                    return this.m.ReadInt(this.Address + 0xF0);
 				}
 				return 1;
 			}
@@ -33,9 +33,9 @@ namespace PoeHUD.Poe.EntityComponents
 		{
 			get
 			{
-				if (this.address != 0)
+				if (this.Address != 0)
 				{
-					return this.m.ReadStringU(this.m.ReadInt(this.address + 12, new int[]
+					return this.m.ReadStringU(this.m.ReadInt(this.Address + 12, new int[]
 					{
 						4,
 						4
@@ -88,11 +88,11 @@ namespace PoeHUD.Poe.EntityComponents
         private List<ItemMod> GetMods(int startOffset, int endOffset)
         {
             var list = new List<ItemMod>();
-            if (address == 0)
+            if (Address == 0)
                 return list;
 
-            int begin = m.ReadInt(address + startOffset);
-            int end = m.ReadInt(address + endOffset);
+            int begin = m.ReadInt(Address + startOffset);
+            int end = m.ReadInt(Address + endOffset);
             int count = (end - begin) / 24;
             if (count > 12)
                 return list;
@@ -108,12 +108,12 @@ namespace PoeHUD.Poe.EntityComponents
 			get
 			{
 				List<ItemMod> list = new List<ItemMod>();
-				if (this.address == 0)
+				if (this.Address == 0)
 				{
 					return list;
 				}
-				int i = this.m.ReadInt(this.address + 52);
-				int num = this.m.ReadInt(this.address + 56);
+				int i = this.m.ReadInt(this.Address + 52);
+				int num = this.m.ReadInt(this.Address + 56);
 				int num2 = (num - i) / 24;
 				if (num2 > 100 || num2 <= 0)
 				{

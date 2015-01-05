@@ -13,9 +13,9 @@ namespace PoeHUD.Poe.EntityComponents
         {
             get
             {
-                if (this.address != 0)
+                if (this.Address != 0)
                 {
-                    return this.m.ReadInt(this.address + 0x9C);
+                    return this.m.ReadInt(this.Address + 0x9C);
                 }
                 return 1;
             }
@@ -34,12 +34,12 @@ namespace PoeHUD.Poe.EntityComponents
 			get
 			{
 				List<int> list = new List<int>();
-				if (this.address == 0)
+				if (this.Address == 0)
 				{
 					return list;
 				}
-				int num = this.m.ReadInt(this.address + 656);
-				int num2 = this.m.ReadInt(this.address + 660);
+				int num = this.m.ReadInt(this.Address + 656);
+				int num2 = this.m.ReadInt(this.Address + 660);
 				for (int i = num; i < num2; i += 8)
 				{
 					int item = this.m.ReadInt(i);
@@ -50,12 +50,12 @@ namespace PoeHUD.Poe.EntityComponents
 		}
 		public bool HasMinion(Entity entity)
 		{
-			if (this.address == 0)
+			if (this.Address == 0)
 			{
 				return false;
 			}
-			int num = this.m.ReadInt(this.address + 656);
-			int num2 = this.m.ReadInt(this.address + 660);
+			int num = this.m.ReadInt(this.Address + 656);
+			int num2 = this.m.ReadInt(this.Address + 660);
 			for (int i = num; i < num2; i += 8)
 			{
 				int num3 = this.m.ReadInt(i);

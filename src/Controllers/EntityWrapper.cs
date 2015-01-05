@@ -16,7 +16,7 @@ namespace PoeHUD.Controllers
 
 		public string Path { get; private set; }
 		public bool IsValid { get { return this.InternalEntity.IsValid && this.IsInList && this.cachedId == this.InternalEntity.ID; } }
-		public int Address { get { return this.InternalEntity.address; } }
+		public int Address { get { return this.InternalEntity.Address; } }
 		public int Id { get { return this.cachedId; } }
 		public bool IsHostile { get { return this.InternalEntity.IsHostile; } }
 		public long LongId { get; private set; }
@@ -59,7 +59,7 @@ namespace PoeHUD.Controllers
 		}
 		public void PrintComponents()
 		{
-			Console.WriteLine(this.InternalEntity.Path + " " + this.InternalEntity.address.ToString("X"));
+			Console.WriteLine(this.InternalEntity.Path + " " + this.InternalEntity.Address.ToString("X"));
 			foreach (KeyValuePair<string, int> current in this.Components)
 			{
 				Console.WriteLine(current.Key + " " + current.Value.ToString("X"));

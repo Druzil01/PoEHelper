@@ -80,13 +80,13 @@ namespace PoeHUD.Hud.Gemleveling
                 {
 
                     Rect Re = e.GetClientRect();
-                    rc.AddTextWithHeight(new Vec2(Re.X + 4, Re.Y + 4), e.address.ToString ("X8"), Color.White, 8, DrawTextFormat.Left);
+                    rc.AddTextWithHeight(new Vec2(Re.X + 4, Re.Y + 4), e.Address.ToString ("X8"), Color.White, 8, DrawTextFormat.Left);
                     if (e.Active)
                         rc.AddFrame(Re, Color.Gold, 2);
                     else
                         rc.AddFrame(Re, Color.Gray, 2);
 
-                    Console.WriteLine ("lvlup "+glw.Children.IndexOf(e).ToString() +" at "+e.address.ToString("X8"));
+                    Console.WriteLine ("lvlup "+glw.Children.IndexOf(e).ToString() +" at "+e.Address.ToString("X8"));
                     Element LevelUpButton = e.Children[1]; // Element for the levelUp Button
                     if (LevelUpButton.IsVisible && LevelUpButton.Height > 0)
                     {

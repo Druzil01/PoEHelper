@@ -13,42 +13,42 @@ namespace PoeHUD.Poe.UI
 		// 16 dup <128-bytes structure>
 		// then the rest is
 
-		public int vTable { get { return m.ReadInt(this.address + 0); } }
+		public int vTable { get { return m.ReadInt(this.Address + 0); } }
 
-		public Element Root { get { return base.ReadObject<Element>(this.address + 0x5c + OffsetBuffers); } }
+		public Element Root { get { return base.ReadObject<Element>(this.Address + 0x5c + OffsetBuffers); } }
 		
-        public Element Parent { get { return base.ReadObject<Element>(this.address + 0x60 + OffsetBuffers); } }
+        public Element Parent { get { return base.ReadObject<Element>(this.Address + 0x60 + OffsetBuffers); } }
 		
-        public float X { get { return this.m.ReadFloat(this.address + 0x64 + OffsetBuffers); } }
+        public float X { get { return this.m.ReadFloat(this.Address + 0x64 + OffsetBuffers); } }
 		
-        public float Y { get { return this.m.ReadFloat(this.address + 0x68 + OffsetBuffers); } }
+        public float Y { get { return this.m.ReadFloat(this.Address + 0x68 + OffsetBuffers); } }
         
         public bool Active 
         { 
                 get 
                 { 
-                        return this.m.ReadFloat(this.address + 0xEC + OffsetBuffers)==1; 
+                        return this.m.ReadFloat(this.Address + 0xEC + OffsetBuffers)==1; 
                 } 
         }
 		
-        public float Width { get { return this.m.ReadFloat(this.address + 0xF0 + OffsetBuffers); } }
+        public float Width { get { return this.m.ReadFloat(this.Address + 0xF0 + OffsetBuffers); } }
 		
-        public float Height { get { return this.m.ReadFloat(this.address + 0xF4 + OffsetBuffers); } }
+        public float Height { get { return this.m.ReadFloat(this.Address + 0xF4 + OffsetBuffers); } }
         
-        public int clickable { get { return this.m.ReadInt(this.address + 0x9c); } }
+        public int clickable { get { return this.m.ReadInt(this.Address + 0x9c); } }
 		
         public int ChildCount
 		{
 			get
 			{
-				return (this.m.ReadInt(this.address + 0x14 + OffsetBuffers) - this.m.ReadInt(this.address + 0x10 + OffsetBuffers)) / 4;
+				return (this.m.ReadInt(this.Address + 0x14 + OffsetBuffers) - this.m.ReadInt(this.Address + 0x10 + OffsetBuffers)) / 4;
 			}
 		}
 		
         public bool IsVisibleLocal
 		{
 			get {
-                return (this.m.ReadInt(this.address + OffsetBuffers +0x58) & 1) == 1;
+                return (this.m.ReadInt(this.Address + OffsetBuffers +0x58) & 1) == 1;
 			}
 		}
 
@@ -65,13 +65,13 @@ namespace PoeHUD.Poe.UI
 			{
 				const int listOffset = 0x10 + OffsetBuffers;
 				List<Element> list = new List<Element>();
-				if (this.m.ReadInt(this.address + listOffset + 4) == 0 || this.m.ReadInt(this.address + listOffset) == 0 || this.ChildCount > 1000)
+				if (this.m.ReadInt(this.Address + listOffset + 4) == 0 || this.m.ReadInt(this.Address + listOffset) == 0 || this.ChildCount > 1000)
 				{
 					return list;
 				}
 				for (int i = 0; i < this.ChildCount; i++)
 				{
-					list.Add(base.GetObject<Element>(this.m.ReadInt(this.address + listOffset, i * 4)));
+					list.Add(base.GetObject<Element>(this.m.ReadInt(this.Address + listOffset, i * 4)));
 				}
 				return list;
 			}
@@ -82,7 +82,7 @@ namespace PoeHUD.Poe.UI
 			HashSet<Element> hashSet = new HashSet<Element>();
 			Element root = this.Root;
 			Element parent = this.Parent;
-			while (!hashSet.Contains(parent) && root.address != parent.address && parent.address != 0)
+			while (!hashSet.Contains(parent) && root.Address != parent.Address && parent.Address != 0)
 			{
 				list.Add(parent);
 				hashSet.Add(parent);
@@ -144,7 +144,7 @@ namespace PoeHUD.Poe.UI
 
         public Element GetChildAtIndex(int index)
         {
-            return index >= this.ChildCount ? null : base.GetObject<Element>(this.m.ReadInt(this.address + OffsetBuffers + 0x10, index * 4));
+            return index >= this.ChildCount ? null : base.GetObject<Element>(this.m.ReadInt(this.Address + OffsetBuffers + 0x10, index * 4));
         }
 
         public T ReadObjectAfterBuffers<T>(int offet) where T : RemoteMemoryObject, new()

@@ -8,28 +8,28 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				return this.m.ReadInt(this.address + 0x0c);
+				return this.m.ReadInt(this.Address + 0x0c);
 			}
 		}
 		public int Height
 		{
 			get
 			{
-				return this.m.ReadInt(this.address + 0x10);
+				return this.m.ReadInt(this.Address + 0x10);
 			}
 		}
 		private int ListStart
 		{
 			get
 			{
-				return this.m.ReadInt(this.address + 0x14);
+				return this.m.ReadInt(this.Address + 0x14);
 			}
 		}
 		private int ListEnd
 		{
 			get
 			{
-				return this.m.ReadInt(this.address + 0x18);
+				return this.m.ReadInt(this.Address + 0x18);
 			}
 		}
 		public List<Entity> Items

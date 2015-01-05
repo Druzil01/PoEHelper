@@ -8,7 +8,7 @@ namespace PoeHUD.Poe
 			{
 //				return this.m.ReadInt(this.address + 10872) == 3;
 //                return this.m.ReadInt(this.address + 0x2AF8) == 3; // 1.2
-                return this.m.ReadInt(this.address + 0x2D80) == 3;
+                return this.m.ReadInt(this.Address + 0x2D80) == 3;
             }
 		}
 
@@ -16,7 +16,7 @@ namespace PoeHUD.Poe
         {
             get //getinventoryset
             { 
-                return GetObject<InventorySet>(address + 0x2D50); 
+                return GetObject<InventorySet>(Address + 0x2D50); 
             } 
         } 
 
@@ -25,7 +25,7 @@ namespace PoeHUD.Poe
 			get
 			{
 //				return base.GetObject<InventorySet>(this.address + 0x2900);
-                int offs = this.m.ReadInt(this.address + 0x220);
+                int offs = this.m.ReadInt(this.Address + 0x220);
                 offs = this.m.ReadInt(offs + 0x04c  );
                 offs = this.m.ReadInt(offs + 0x968);
                 return base.GetObject<InventorySet>(offs);
@@ -48,7 +48,7 @@ namespace PoeHUD.Poe
         {
             get
             {
-                int offs = this.m.ReadInt(this.address + 0x220);
+                int offs = this.m.ReadInt(this.Address + 0x220);
                 return base.GetObject<UiBase>(offs + 0x4C);
             }
         }

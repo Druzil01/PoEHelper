@@ -8,32 +8,32 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				return base.GetObject<Camera>(this.address + 0x15B4 + Offsets.IgsOffset - Offsets.IgsDelta);
+				return base.GetObject<Camera>(this.Address + 0x15B4 + Offsets.IgsOffset - Offsets.IgsDelta);
 			}
 		}
 		public float CurrentZoomLevel
 		{
 			get
 			{
-				return this.m.ReadFloat(this.address + 0x1694 + Offsets.IgsOffset - Offsets.IgsDelta);
+				return this.m.ReadFloat(this.Address + 0x1694 + Offsets.IgsOffset - Offsets.IgsDelta);
 			}
 			set
 			{
-				this.m.WriteFloat(this.address + 0x1694 + Offsets.IgsOffset - Offsets.IgsDelta, value);
+				this.m.WriteFloat(this.Address + 0x1694 + Offsets.IgsOffset - Offsets.IgsDelta, value);
 			}
 		}
 		public IngameData Data
 		{
 			get
 			{
-				return base.ReadObject<IngameData>(this.address + 0x138 + Offsets.IgsOffset);
+				return base.ReadObject<IngameData>(this.Address + 0x138 + Offsets.IgsOffset);
 			}
 		}
 		public bool InGame
 		{
 			get
 			{
-				return this.m.ReadInt(this.address + 0x138 + Offsets.IgsOffset) != 0 && this.ServerData.IsInGame;
+				return this.m.ReadInt(this.Address + 0x138 + Offsets.IgsOffset) != 0 && this.ServerData.IsInGame;
 			}
 		}
 		public ServerData ServerData
@@ -68,7 +68,7 @@ namespace PoeHUD.Poe
 		{
 			get
 			{
-				return this.m.ReadInt(this.address + 68, 2528);
+				return this.m.ReadInt(this.Address + 68, 2528);
 			}
 		}
 	}

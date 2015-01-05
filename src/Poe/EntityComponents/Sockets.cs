@@ -9,12 +9,12 @@ namespace PoeHUD.Poe.EntityComponents
 		{
 			get
 			{
-				if (this.address == 0)
+				if (this.Address == 0)
 				{
 					return 0;
 				}
-				int num = this.m.ReadInt(this.address + 60);
-				int num2 = this.m.ReadInt(this.address + 64);
+				int num = this.m.ReadInt(this.Address + 60);
+				int num2 = this.m.ReadInt(this.Address + 64);
 				int num3 = num2 - num;
 				if (num3 <= 0 || num3 > 6)
 				{
@@ -37,12 +37,12 @@ namespace PoeHUD.Poe.EntityComponents
 			get
 			{
 				List<int[]> list = new List<int[]>();
-				if (this.address == 0)
+				if (this.Address == 0)
 				{
 					return list;
 				}
-				int num = this.m.ReadInt(this.address + 60);
-				int num2 = this.m.ReadInt(this.address + 64);
+				int num = this.m.ReadInt(this.Address + 60);
+				int num2 = this.m.ReadInt(this.Address + 64);
 				int num3 = num2 - num;
 				if (num3 <= 0 || num3 > 6)
 				{
@@ -69,11 +69,11 @@ namespace PoeHUD.Poe.EntityComponents
 			get
 			{
 				List<int> list = new List<int>();
-				if (this.address == 0)
+				if (this.Address == 0)
 				{
 					return list;
 				}
-				int num = this.address + 12;
+				int num = this.Address + 12;
 				for (int i = 0; i < 6; i++)
 				{
 					int num2 = this.m.ReadInt(num);
@@ -97,7 +97,7 @@ namespace PoeHUD.Poe.EntityComponents
 		{
 			get
 			{
-				if (this.address == 0)
+				if (this.Address == 0)
 				{
 					return false;
 				}

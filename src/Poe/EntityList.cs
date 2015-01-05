@@ -19,7 +19,7 @@ namespace PoeHUD.Poe
 			get
 			{
 				Dictionary<int, Entity> dictionary = new Dictionary<int, Entity>();
-				this.CollectEntities(this.m.ReadInt(this.address + 12), dictionary);
+				this.CollectEntities(this.m.ReadInt(this.Address + 12), dictionary);
 				return dictionary;
 			}
 		}

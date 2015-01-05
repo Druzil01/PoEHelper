@@ -24,7 +24,7 @@ namespace PoeHUD.Hud
 			}
 			Element uIHover = this.model.Internal.IngameState.UIHover;
 			Entity item = uIHover.AsObject<InventoryItemIcon>().Item;
-			if (item.address != 0 && item.IsValid)
+			if (item.Address != 0 && item.IsValid)
 			{
 				Tooltip tooltip = uIHover.AsObject<InventoryItemIcon>().Tooltip;
 				if (tooltip == null)

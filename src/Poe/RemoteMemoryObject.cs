@@ -6,7 +6,7 @@ namespace PoeHUD.Poe
 	public abstract class RemoteMemoryObject
 	{
 		public Memory m;
-		public int address;
+		public int Address;
 		public TheGame game;
 		public RemoteMemoryObject()
 		{
@@ -18,20 +18,20 @@ namespace PoeHUD.Poe
 		{
 			T t = Activator.CreateInstance<T>();
 			t.m = this.m;
-			t.address = address;
+			t.Address = address;
 			t.game = this.game;
 			return t;
 		}
 
 		public virtual T ReadObjectAt<T>(int offet) where T : RemoteMemoryObject, new()
 		{
-			return ReadObject<T>(address + offet);
+			return ReadObject<T>(Address + offet);
 		}
 		public T ReadObject<T>(int address) where T : RemoteMemoryObject, new()
 		{
 			T t = Activator.CreateInstance<T>();
 			t.m = this.m;
-			t.address = this.m.ReadInt(address);
+			t.Address = this.m.ReadInt(address);
 			t.game = this.game;
 			return t;
 		}
@@ -39,18 +39,18 @@ namespace PoeHUD.Poe
 		{
 			T t = Activator.CreateInstance<T>();
 			t.m = this.m;
-			t.address = this.address;
+			t.Address = this.Address;
 			t.game = this.game;
 			return t;
 		}
 		public override bool Equals(object obj)
 		{
 			RemoteMemoryObject remoteMemoryObject = obj as RemoteMemoryObject;
-			return remoteMemoryObject != null && remoteMemoryObject.address == this.address;
+			return remoteMemoryObject != null && remoteMemoryObject.Address == this.Address;
 		}
 		public override int GetHashCode()
 		{
-			return this.address + base.GetType().Name.GetHashCode();
+			return this.Address + base.GetType().Name.GetHashCode();
 		}
 	}
 }

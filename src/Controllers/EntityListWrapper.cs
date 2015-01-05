@@ -63,14 +63,14 @@ namespace PoeHUD.Controllers
 				this.Observer.EntityRemoved(current);
 			}
 			this.entityCache.Clear();
-			int address = this.Root.Internal.IngameState.Data.LocalPlayer.address;
+			int address = this.Root.Internal.IngameState.Data.LocalPlayer.Address;
 			if (this.Player == null || this.Player.Address != address) {
 				this.Player = new EntityWrapper(this.Root, address);
 			}
 		}
 		public void RefreshState()
 		{
-			int address = this.Root.Internal.IngameState.Data.LocalPlayer.address;
+			int address = this.Root.Internal.IngameState.Data.LocalPlayer.Address;
 			if ((this.Player == null) || (this.Player.Address != address))
 			{
 				this.Player = new EntityWrapper(this.Root, address);

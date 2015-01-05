@@ -42,7 +42,7 @@ namespace PoeHUD.Hud.MaxRolls
             Rect clientRect = childAtIndex2.GetClientRect();
 
             Entity poeEntity = uiHover.AsObject<InventoryItemIcon>().Item;
-            if (poeEntity.address == 0 || !poeEntity.IsValid)
+            if (poeEntity.Address == 0 || !poeEntity.IsValid)
                 return;
             if (this.poeEntity == null || this.poeEntity.ID != poeEntity.ID)
             {
